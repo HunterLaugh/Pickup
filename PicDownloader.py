@@ -8,12 +8,12 @@ def dowmloadPic(html,keyword):
 
 
     pic_url = re.findall('"objURL":"(.*?)",',html,re.S)
-    i = 0
+    i = 1
     print ('找到关键词:'+keyword+'的图片，现在开始下载图片...')
     for each in pic_url:
         print ('正在下载第'+str(i+1)+'张图片，图片地址:'+str(each))
         try:
-            pic= requests.get(each, timeout=10)
+            pic= requests.get(each,timeout=10)
         except requests.exceptions.ConnectionError:
             print ('【错误】当前图片无法下载')
             continue
@@ -23,7 +23,6 @@ def dowmloadPic(html,keyword):
         fp.write(pic.content)
         fp.close()
         i += 1
-
 
 
 if __name__ == '__main__':
